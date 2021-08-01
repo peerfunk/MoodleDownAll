@@ -45,8 +45,8 @@ def DownloadCoursePage(link):
     r = requests.get(link, allow_redirects=False, cookies=cookies)
     soup = BeautifulSoup(r.content, "html.parser")
     coursName = slugify(soup.title.string)
-    open(coursName + "/index.html" , 'wb').write(r.content)
     CreateDir(coursName)
+    open(coursName + "/index.html" , 'wb').write(r.content)
     #Get sections in a course
     sections = soup.find_all("li", id=re.compile("section-[0-9]+"))
     #Get Files of section
